@@ -21,7 +21,7 @@ namespace screensaver
         //класс снединок
         private class Snowflake
         {
-            public float X, Y;      // координаты
+            public float X, Y;      
             public float Speed;
             public float Size;
             public float Wind;      // Горизонтальное смещение (эффект ветра)
@@ -155,9 +155,13 @@ namespace screensaver
 
                 // телепортация по горизонтали для непрерывного движения
                 if (flake.X > screenWidth + HORIZONTAL_MARGIN)
+                {
                     flake.X = -HORIZONTAL_MARGIN; // Вышла справа - появляется слева
+                }
                 else if (flake.X < -HORIZONTAL_MARGIN)
+                {
                     flake.X = screenWidth + HORIZONTAL_MARGIN; // Вышла слева - появляется справа
+                }
             }
         }
 
@@ -166,7 +170,10 @@ namespace screensaver
         {
             // Если фон не загружен, ничего не рисуем
             if (backgroundImage == null)
+            {
                 return;
+            }
+
             using (var buffer = new Bitmap(ClientRectangle.Width, ClientRectangle.Height))
             using (var graphics = Graphics.FromImage(buffer))
             {
@@ -194,14 +201,13 @@ namespace screensaver
             }
         }
 
-        // очистка ресурсов при закрытии
+        // очистка ресурсов при закрытии 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             timer?.Stop();
             timer?.Dispose();
             backgroundImage?.Dispose();
             snowflakeImg?.Dispose();
-
             base.OnFormClosing(e);
         }
     }
