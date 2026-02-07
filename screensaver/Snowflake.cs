@@ -1,7 +1,7 @@
 namespace screensaver
 {
     /// <summary>
-    /// Класс, представляющий снежинку
+    /// Класс представляющий снежинку
     /// </summary>
     public class Snowflake
     {
