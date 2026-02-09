@@ -3,6 +3,12 @@ using System.Windows.Forms;
 
 namespace screensaver
 {
+    /// <summary>
+    /// Главная форма приложения "Снежная заставка".
+    /// Создает анимацию падающих снежинок на фоне изображения.
+    /// </summary>
+
+
     public partial class MainForm : Form
     {
         private const int CountSnowflakes = 150;
@@ -29,11 +35,17 @@ namespace screensaver
         private Bitmap backgroundImage;
         private Image snowflakeImage;
 
+        /// <summary>
+        /// Конструктор главной формы. Инициализирует компоненты.
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Загружает ресурсы приложения (фоновое изображение и изображение снежинки).
+        /// </summary>
         private void LoadResources()
         {
             var screenBounds = Screen.PrimaryScreen.Bounds;
@@ -60,6 +72,9 @@ namespace screensaver
             snowflakeImage = Properties.Resources.snowflake;
         }
 
+        /// <summary>
+        /// Создает начальный набор снежинок со случайными параметрами.
+        /// </summary>
         private void CreateSnowflakes()
         {
             int screenWidth = Screen.PrimaryScreen.Bounds.Width;
@@ -81,6 +96,9 @@ namespace screensaver
             }
         }
 
+        /// <summary>
+        /// Настраивает таймер для анимации снежинок.
+        /// </summary>
         private void SetupTimer()
         {
             animationTimer = new System.Windows.Forms.Timer() { Interval = AnimationTimerInterval };
@@ -94,6 +112,9 @@ namespace screensaver
             };
         }
 
+        /// <summary>
+        /// Обновляет позиции всех снежинок, обрабатывает выход за границы экрана.
+        /// </summary>
         private void UpdateSnowflakes()
         {
             int screenWidth = Screen.PrimaryScreen.Bounds.Width;
@@ -122,6 +143,9 @@ namespace screensaver
             }
         }
 
+        /// <summary>
+        /// Обработчик события отрисовки формы. Рисует фон и все снежинки.
+        /// </summary>
         private void MainForm_Paint(object sender, PaintEventArgs e)
         {
             if (backgroundImage == null)
@@ -151,6 +175,9 @@ namespace screensaver
             }
         }
 
+        /// <summary>
+        /// Обработчик загрузки формы. Инициализирует ресурсы и запускает анимацию.
+        /// </summary>
         private void MainForm_Load(object sender, EventArgs e)
         {
             LoadResources();
@@ -159,11 +186,17 @@ namespace screensaver
             animationTimer.Start();
         }
 
+        /// <summary>
+        /// Обработчик нажатия клавиши. Закрывает приложение при нажатии любой клавиши.
+        /// </summary>
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// Обработчик закрытия формы. Освобождает ресурсы и останавливает таймер.
+        /// </summary>
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             animationTimer.Stop();

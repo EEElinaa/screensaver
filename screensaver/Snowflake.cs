@@ -29,5 +29,6 @@ namespace screensaver
         /// Горизонтальное смещение (эффект ветра)
         /// </summary>
         public float Wind { get; set; }
+        public int HorizontalFluctuation { get; internal set; }
     }
 }
